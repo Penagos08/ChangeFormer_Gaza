@@ -70,11 +70,22 @@ ChangeFormer_Gaza/
 │   ├── postprocess/    # vectorización, cruce con edificios, métricas
 │   └── utils/          # utilidades geoespaciales y de visualización
 ├── third_party/        # submódulo ChangeFormer (código oficial)
+├── model_cards/        # fichas de descripción de los modelos
+├── dataset_cards/      # fichas de descripción de los conjuntos de datos
 ├── notebooks/          # exploración y demo
 ├── scripts/            # ejecución del pipeline completo
 ├── tests/              # pruebas básicas
 └── outputs/            # resultados (no versionados)
 ```
+
+## Fichas de modelos y conjuntos de datos
+
+El proyecto documenta sus modelos y sus datos siguiendo los *model cards* de Mitchell et
+al. (2019) y las plantillas de Hugging Face.
+
+- Modelos: [`model_cards/README.md`](model_cards/README.md) (ChangeFormerV6 y ChangeFormer_Gaza).
+- Conjuntos de datos: [`dataset_cards/README.md`](dataset_cards/README.md) (Sentinel-2,
+  Sentinel-1, huellas OSM, UNOSAT, xBD y el producto derivado).
 
 ## Instalación
 
@@ -144,6 +155,11 @@ limitación de GPU local: ver `notebooks/02_changeformer_gaza.ipynb`.
   Damage from Satellite Imagery*. CVPRW.
 - UNOSAT. *Gaza Strip Comprehensive Damage Assessment*. https://unosat.org/
 - Microsoft Planetary Computer. https://planetarycomputer.microsoft.com/
+- Mitchell, M., Wu, S., Zaldivar, A., Barnes, P., Vasserman, L., Hutchinson, B., Spitzer,
+  E., Raji, I. D. y Gebru, T. (2019). *Model Cards for Model Reporting*. Proceedings of
+  the Conference on Fairness, Accountability, and Transparency (pp. 220-229). arXiv:1810.03993.
+- Gebru, T., Morgenstern, J., Vecchione, B., Vaughan, J. W., Wallach, H., Daumé III, H. y
+  Crawford, K. (2018). *Datasheets for Datasets*. arXiv:1803.09010.
 
 ## Licencia
 
