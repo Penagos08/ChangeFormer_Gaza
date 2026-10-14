@@ -1,0 +1,34 @@
+# Datos y resultados pesados
+data/raw/
+data/processed/
+data/external/
+checkpoints/
+outputs/
+reports/
+*.tif
+*.tiff
+*.img
+*.jp2
+*.h5
+
+# Entornos
+.env
+.venv/
+venv/
+env/
+*.egg-info/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Pesos y cachés de modelos
+*.pt
+*.pth
+*.ckpt
+.cache/
+__pycache__/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

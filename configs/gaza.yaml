@@ -1,0 +1,80 @@
+# Parametros generales del proyecto ChangeFormer_Gaza
+project:
+  name: ChangeFormer_Gaza
+  crs: "EPSG:32636"        # UTM zona 36N, adecuado para Gaza
+  seed: 42
+
+aoi:
+  name: "Franja de Gaza"
+  # [min_lon, min_lat, max_lon, max_lat] en WGS84
+  bbox_wgs84: [34.20, 31.20, 34.60, 31.60]
+  geojson: "data/aoi/gaza.geojson"
+
+sentinel2:
+  collection: "sentinel-2-l2a"
+  bands: ["B02", "B03", "B04", "B08"]   # azul, verde, rojo, NIR
+  resolution: 10                         # metros
+  max_cloud_cover: 15
+  pre:
+    start: "2023-05-01"
+    end: "2023-06-15"
+  post:
+    start: "2024-09-01"
+    end: "2024-10-15"
+
+sentinel1:
+  collection: "sentinel-1-grd"
+  polarization: ["vv", "vh"]
+  orbit_state: "descending"              # ascending | descending | None
+  resolution: 10
+  pre:
+    start: "2023-05-01"
+    end: "2023-06-15"
+  post:
+    start: "2024-09-01"
+    end: "2024-10-15"
+
+model:
+  name: "ChangeFormerV6"
+  embed_dim: 256
+  n_class: 2
+  in_chans: 3
+  img_size: 256
+  # Ruta local a los pesos preentrenados (LEVIR-CD). Ajustar tras descargarlos.
+  checkpoint: "checkpoints/ChangeFormer_LEVIR/best_ckpt.pt"
+
+tiling:
+  size: 256
+  stride: 256
+  min_valid_ratio: 0.05                  # fraccion minima de pixeles validos (sin nodata)
+
+inference:
+  batch_size: 4
+  device: "auto"                         # auto | cpu | cuda
+  tta: false
+  threshold: 0.5
+
+outputs:
+  dir: "outputs"
+  rasters: "outputs/rasters"
+  vectors: "outputs/vectors"
+  maps: "outputs/maps"
+  reports: "reports"
+
+# Dataset de referencia generado por UNOSAT (descarga manual desde HDX)
+unosat:
+  gdb_path: "data/external/unosat/unosat_gaza_damage.gdb"
+  vector_path: "data/external/unosat/unosat_gaza_damage.geojson"  # salida de convencion
+  layer: null                            # se autodetecta la primera capa si es null
+
+# Ajuste fino (Fase 5), pensado para Colab
+finetune:
+  dataset_root: "data/external/xbd"      # estructura xBD (train/val/test)
+  img_size: 256
+  batch_size: 8
+  epochs: 50
+  lr: 0.0001
+  optimizer: "adamw"
+  loss: "ce"
+  num_workers: 2
+  output_dir: "checkpoints/ChangeFormer_xBD"
