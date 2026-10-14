@@ -1,3 +1,10 @@
+## Autor de las fichas
+- Jose David Penagos
+— Universidad Distrital Francisco José de Caldas
+-Ingeniería Catastral y Geodesia
+-Inteligencia Artificial Aplicada al territorio
+— GitHub: [Penagos08](https://github.com/Penagos08)
+
 # ChangeFormer_Gaza
 
 Detección de edificios e infraestructura destruida en la Franja de Gaza mediante
